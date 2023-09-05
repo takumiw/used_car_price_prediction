@@ -1,0 +1,7 @@
+defaults:
+  - _self_
+  - exp: exp001_lgbm_baseline
+
+n_classes: 4
+n_folds: 10
+fold: 0

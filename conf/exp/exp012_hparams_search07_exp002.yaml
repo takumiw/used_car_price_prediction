@@ -1,0 +1,62 @@
+# @package exp
+
+name: exp006_hparams_search01_exp002
+features:
+  - year_round_outlier  # year
+  - odometer_fix_outlier  # odometer
+  - odometer_neg1
+  - region
+  - manufacturer_merge  # manufacturer
+  - condition
+  - cylinders_num  # cylinders
+  - fuel
+  - title_status
+  - transmission
+  - drive
+  - size_merge  # size
+  - type
+  - paint_color
+  - state_fillna  # state
+cat_features:
+  - region
+  - manufacturer_merge  # manufacturer
+  - condition
+  - odometer_neg1
+  # - cylinders
+  - fuel
+  - title_status
+  - transmission
+  - drive
+  - size_merge  # size
+  - type
+  - paint_color
+  - state_fillna  # state
+obj: price
+model:
+  name: lightgbm
+hparams:
+  boosting: gbdt
+  objective: mape
+  data_sample_strategy: bagging
+  first_metric_only: true
+  metric: mape,rmse
+  num_leaves: 255
+  max_depth: 5
+  min_data_in_leaf: 20
+  min_sum_hessian_in_leaf: 0.003
+  bagging_fraction: 1.0
+  bagging_freq: 1
+  lambda_l1: 0.0
+  lambda_l2: 0.0
+  max_bin: 511
+  feature_fraction: 1.0
+  saved_feature_importance_type: 1  # gain-based
+  learning_rate: 0.05
+  verbose: -1
+  num_threads: -1
+  seed: 42
+  device_type: cpu
+params:
+  verbose_round: 10
+  early_stopping_round: 100
+  num_iterations: 10000
